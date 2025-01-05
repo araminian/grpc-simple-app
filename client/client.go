@@ -46,7 +46,7 @@ func AddTask(c pb.TodoServiceClient, description string, dueDate time.Time, head
 	return res.Id
 }
 
-func NewClient(addr string) (pb.TodoServiceClient, error) {
+func NewClient(addr string) (pb.TodoServiceClient, *grpc.ClientConn, error) {
 
 	opts := []grpc.DialOption{
 		grpc.WithTransportCredentials(insecure.NewCredentials()), // Disable TLS
@@ -58,10 +58,10 @@ func NewClient(addr string) (pb.TodoServiceClient, error) {
 	conn, err := grpc.Dial(addr, opts...)
 
 	if err != nil {
-		return nil, err
+		return nil, nil, err
 	}
 
-	return pb.NewTodoServiceClient(conn), nil
+	return pb.NewTodoServiceClient(conn), conn, nil
 
 }
 
