@@ -1,4 +1,4 @@
-package main
+package server
 
 import (
 	"context"
@@ -15,7 +15,7 @@ import (
 	"google.golang.org/protobuf/types/known/fieldmaskpb"
 )
 
-func (s *server) AddTask(
+func (s *Server) AddTask(
 	_ context.Context,
 	in *pb.AddTaskRequest,
 ) (*pb.AddTaskResponse, error) {
@@ -24,7 +24,7 @@ func (s *server) AddTask(
 		return nil, err
 	}
 
-	id, err := s.d.addTask(in.Description, in.DueDate.AsTime())
+	id, err := s.D.addTask(in.Description, in.DueDate.AsTime())
 	if err != nil {
 		return nil, status.Errorf(codes.Internal, "failed to add task: %v", err)
 	}
@@ -32,11 +32,11 @@ func (s *server) AddTask(
 	return &pb.AddTaskResponse{Id: id}, nil
 }
 
-func (s *server) ListTasks(
+func (s *Server) ListTasks(
 	req *pb.ListTasksRequest,
 	stream pb.TodoService_ListTasksServer,
 ) error {
-	return s.d.getTasks(func(i interface{}) error {
+	return s.D.getTasks(func(i interface{}) error {
 		task := i.(*pb.Task)
 
 		// filter
@@ -55,7 +55,7 @@ func (s *server) ListTasks(
 	})
 }
 
-func (s *server) UpdateTask(stream pb.TodoService_UpdateTaskServer) error {
+func (s *Server) UpdateTask(stream pb.TodoService_UpdateTaskServer) error {
 
 	for {
 		req, err := stream.Recv()
@@ -66,11 +66,11 @@ func (s *server) UpdateTask(stream pb.TodoService_UpdateTaskServer) error {
 			return err
 		}
 
-		s.d.updateTask(req.Id, req.Description, req.DueDate.AsTime(), req.Done)
+		s.D.updateTask(req.Id, req.Description, req.DueDate.AsTime(), req.Done)
 	}
 }
 
-func (s *server) DeleteTask(stream pb.TodoService_DeleteTaskServer) error {
+func (s *Server) DeleteTask(stream pb.TodoService_DeleteTaskServer) error {
 	for {
 		req, err := stream.Recv()
 		if err == io.EOF {
@@ -80,7 +80,7 @@ func (s *server) DeleteTask(stream pb.TodoService_DeleteTaskServer) error {
 			return err
 		}
 
-		s.d.deleteTask(req.Id)
+		s.D.deleteTask(req.Id)
 		stream.Send(&pb.DeleteTaskResponse{})
 	}
 }
