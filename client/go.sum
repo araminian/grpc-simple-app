@@ -1,5 +1,5 @@
-github.com/araminian/grpcch4/proto v0.0.0-20241222114739-d86933d0669c h1:W0kCrM6jrOIo/uCpNK1aLKIpzkrKjy4K6+0PKC2sY44=
-github.com/araminian/grpcch4/proto v0.0.0-20241222114739-d86933d0669c/go.mod h1:KzuDbaDiVQwzZlMi5uA0DXN7mwQpCTRdkt0kWp4aLhc=
+github.com/araminian/grpc-simple-app/proto v0.0.0-20250105100811-aa2f8e0ffd03 h1:xbqfuvcWbQr8DzVLmqqejlwYPpRyv25i9RqEyr+9NJ8=
+github.com/araminian/grpc-simple-app/proto v0.0.0-20250105100811-aa2f8e0ffd03/go.mod h1:+MWc++e7GSF3JhfuLeDGlWYaneOCRpJziWJUHw1fsro=
 github.com/envoyproxy/protoc-gen-validate v1.1.0 h1:tntQDh69XqOCOZsDz0lVJQez/2L6Uu2PdjCQwWCJ3bM=
 github.com/envoyproxy/protoc-gen-validate v1.1.0/go.mod h1:sXRDRVmzEbkM7CVcM06s9shE/m23dg3wzjl0UWqJ2q4=
 github.com/go-logr/logr v1.4.2 h1:6pFjapn8bFcIbiKo3XT4j/BhANplGihG6tvd+8rYgrY=

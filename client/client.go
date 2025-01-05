@@ -16,7 +16,7 @@ import (
 	"google.golang.org/protobuf/types/known/fieldmaskpb"
 	"google.golang.org/protobuf/types/known/timestamppb"
 
-	pb "github.com/araminian/grpcch4/proto/todo/v2"
+	pb "github.com/araminian/grpc-simple-app/proto/todo/v2"
 )
 
 func AddTask(c pb.TodoServiceClient, description string, dueDate time.Time, headers map[string]string) uint64 {

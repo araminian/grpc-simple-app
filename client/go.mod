@@ -3,7 +3,7 @@ module github.com/araminian/grpc-simple-app/client
 go 1.23.3
 
 require (
-	github.com/araminian/grpcch4/proto v0.0.0-20241222114739-d86933d0669c
+	github.com/araminian/grpc-simple-app/proto v0.0.0-20250105100811-aa2f8e0ffd03
 	google.golang.org/grpc v1.69.2
 	google.golang.org/protobuf v1.36.1
 )
